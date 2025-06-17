@@ -3,72 +3,99 @@ layout: default
 title: Home
 ---
 
-# Augmenting Cultural Heritage Data
-### Combining SPARQL and LLMs to expand The Bolognese School (Guercino’s and Guido Reni’s paintings Wikidata profiles)
+<style>
+  h1.title {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  p.subtitle {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+  }
+
+  .menu {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .menu a {
+    display: inline-block;
+    margin: 0 10px;
+    font-weight: bold;
+    color: #0366d6;
+    text-decoration: none;
+  }
+
+  .image-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .image-grid div {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .image-grid img {
+    width: 100%;
+    border-radius: 8px;
+  }
+</style>
+
+<h1 class="title">Augmenting Cultural Heritage Data</h1>
+<p class="subtitle">Combining SPARQL and LLMs to expand The Bolognese School (Guercino’s and Guido Reni’s paintings Wikidata profiles)</p>
+
+<div class="menu">
+  <a href="index.md">HOME</a>
+  <a href="wikidata.md">WIKIDATA</a>
+  <a href="sparql.md">SPARQL QUERIES</a>
+  <a href="llm.md">LLM PROMPTS</a>
+  <a href="rdf.md">RDF TRIPLES</a>
+</div>
+
+## About the Project
+
+Our cultural heritage project focuses on enriching **Wikidata** entries related to the **Bolognese School**, particularly the works of **Guercino** and **Guido Reni**.
 
 ---
 
-[HOME](index.md) | [WIKIDATA](html/wikidata.md) | [SPARQL QUERIES](html/sparql.md) | [LLM PROMPTS](html/llm.md) | [RDF TRIPLES](html/rdf.md)
+## Methodology
 
----
-
-## HOME
-
-### ABOUT THE PROJECT
-
-Our cultural heritage project focuses on enriching Wikidata entries related to the **Bolognese School**, particularly the works of Baroque painters **Guercino** and **Guido Reni**. Such a choice is justified by the fact that their works are well-represented yet incomplete on Wikidata.
-
----
-
-### METHODOLOGY
-
-**Subjects of Analysis**:
-
-<div style="display: flex; gap: 30px;">
-  <div style="width: 45%;">
-    <img src="img/query11.jpg" alt="Guercino" style="width:100%;">
-    <p><b>Guercino</b> (Q334262), painting <i>Madonna col Bambino in gloria con san Pancrazio e una santa monaca</i> (Q134065073)</p>
+<div class="image-grid">
+  <div>
+    <img src="img/query11.jpg" alt="Guercino">
+    <p><b>Guercino</b> (Q334262)<br><i>Madonna col Bambino...</i></p>
   </div>
-  <div style="width: 45%;">
-    <p><b>Guido Reni</b> (Q109061), painting <i>The Madonna and Sleeping Child</i> (Q119922630)</p>
-    <img src="img/query12.jpg" alt="Guido Reni" style="width:100%;">
+  <div>
+    <img src="img/query12.jpg" alt="Guido Reni">
+    <p><b>Guido Reni</b> (Q109061)<br><i>The Madonna and Sleeping Child</i></p>
   </div>
 </div>
 
-1. We investigated the **Wikidata** knowledge base to uncover incomplete entries for paintings by Bolognese School artists, focusing on missing details such as location and materials.
-
-2. Using **SPARQL**, we identified missing data — such as painting locations or materials — that could significantly enhance data quality.
-
-3. To fill these gaps, we integrated **Large Language Models** (LLMs), including **Gemini** and **ChatGPT**, then verified the results through trusted external sources like [Wikipedia (IT)](https://it.wikipedia.org/wiki/Pagina_principale) and [ArtUK](https://artuk.org/) to ensure accuracy.
-
-4. Finally, we created **RDF triples** using Wikidata’s ontology to update its data.
-
-💎 This project illustrates how **AI-powered inference**, combined with **SPARQL** and **human validation**, can effectively bridge data gaps in cultural knowledge graphs.
+1. We investigated the **Wikidata** knowledge base...  
+2. Using **SPARQL**, we identified missing data...  
+3. To fill these gaps, we integrated **LLMs**...  
+4. We created **RDF triples**...
 
 ---
 
-### CHALLENGES AND SOLUTIONS
+## Conclusion
 
-**SPARQL Query Design**  
-One of the key challenges was extracting accurate and relevant data from Wikidata. To overcome this, we engaged in iterative testing and refinement of our SPARQL queries, gradually improving both precision and coverage.
-
-**LLM-Generated RDF Errors**  
-The RDF triples produced by language models often contained incorrect properties or QIDs. We addressed this by manually verifying the data in Wikidata and reconstructing the triples using correct and validated identifiers.
-
-**Website Development**  
-With no prior experience using tools like PyCharm or GitHub, we faced a steep learning curve. Through research, experimentation, and collaboration, we adopted best practices for building a clear and functional website.
-
-By working together and approaching each obstacle with curiosity and persistence, we turned difficulties into meaningful learning opportunities and ultimately delivered a robust and cohesive semantic web project.
+This project illustrates how **AI-powered inference**, **SPARQL**, and **human validation** can enhance open cultural knowledge.
 
 ---
 
-### CONCLUSION
-
-This project combines automation with expert review to enhance open cultural data. All SPARQL queries, prompts, RDF triples, and results are available throughout this website.
-
----
-
-### TEAM
+## Team
 
 - Saida Tynyshbek  
 - Gaukhar Serikbay  
