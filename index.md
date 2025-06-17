@@ -1,123 +1,93 @@
----
-layout: default
----
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
 
-[Link to another page](./another-page.html).
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-There should be whitespace between paragraphs.
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+</head>
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+<body>
+<div class="layout">
+    <div class="back">
+        <h1 class="title">Augmenting Cultural Heritage Data</h1>
+        <p class="subtitle">Combining SPARQL and LLMs to expand The Bolognese School (Guercino’s and Guido Reni’s
+            paintings Wikidata profiles)</p>
+    </div>
+    <div class="menu">
+        <a class="home-link" href="">HOME</a>
+        <a class="wikidata-link" href="html/wikidata.html">WIKIDATA</a>
+        <a class="sparql-link" href="html/sparql.html">SPARQL QUERIES</a>
+        <a class="llm-link" href="html/llm.html">LLM PROMPTS</a>
+        <a class="rdf-link" href="html/rdf.html">RDF TRIPLES</a>
+    </div>
+    <div class="content">
+        <h2>HOME</h2>
+        <h3>ABOUT THE PROJECT</h3>
+        <p>Our cultural heritage project focuses on enriching Wikidata entries related to the <b>Bolognese School</b>,
+            particularly the works of Baroque painters <b>Guercino</b> and <b>Guido Reni</b>. Such a choice is
+            justified by the fact that their works are well-represented yet incomplete on Wikidata.</p><br><br>
+        <h3>METHODOLOGY</h3>
+        <p><b>Subjects of Analysis</b>:</p><br><br>
+        <div class="image-grid">
+            <div class="left">
+                <img src="img/query11.jpg" alt="">
+                <p><b>Guercino</b> (Q334262), painting <i>Madonna col Bambino in gloria con san Pancrazio e una santa
+                    monaca</i> (Q134065073)</p>
 
-# Header 1
+            </div>
+            <div class="right">
+                <p><b>Guido Reni</b> (Q109061), painting <i>The Madonna and Sleeping Child</i> (Q119922630)</p>
+                <img src="img/query12.jpg" alt="">
+            </div>
+        </div>
+        <br><br>
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+        <p>1. We investigated the <b>Wikidata</b> knowledge base to uncover incomplete entries for paintings by
+            Bolognese School artists, focusing on missing details such as location and materials.</p><br>
+        <p>2. Using <b>SPARQL</b>, we identified missing data — such as painting locations or materials — that could
+            significantly enhance data quality.</p><br>
+        <p>3. To fill these gaps, we integrated <b>Large Language Models</b> (LLMs), including <b>Gemini</b> and
+            <b>ChatGPT</b>, then verified the results through trusted external sources like
+            <a href="https://it.wikipedia.org/wiki/Pagina_principale">Wikipedia</a> and
+            <a href="https://artuk.org/">ArtUK</a> to ensure accuracy.</p><br>
+        <p>4. Finally, we created <b>RDF triples</b> using Wikidata’s ontology to update its data.</p><br>
+        <p>💎 This project illustrates how <b>AI-powered inference</b>, combined with <b>SPARQL</b> and
+            <b>human validation</b>, can effectively bridge data gaps in cultural knowledge graphs.</p><br><br>
+        <h3>CHALLENGES AND SOLUTIONS</h3>
+        <p><b>SPARQL Query Design</b><br>
+            One of the key challenges was extracting accurate and relevant data from Wikidata. To overcome this, we
+            engaged in iterative testing and refinement of our SPARQL queries, gradually improving both precision and
+            coverage.</p><br>
+        <p><b>LLM-Generated RDF Errors</b><br>
+            The RDF triples produced by language models often contained incorrect properties or QIDs. We addressed this
+            by manually verifying the data in Wikidata and reconstructing the triples using correct and validated
+            identifiers.</p><br>
+        <p><b>Website Development</b><br>
+            With no prior experience using tools like PyCharm or GitHub, we faced a steep learning curve.
+            Through research, experimentation, and collaboration, we adopted best practices for building a clear and
+            functional website.<br>
+        <p>By working together and approaching each obstacle with curiosity and persistence, we turned difficulties
+            into meaningful learning opportunities and ultimately delivered a robust and cohesive semantic web
+            project.</p><br><br>
+        <h3>CONCLUSION</h3>
+        <p>This project combines automation with expert review to enhance open cultural data. All SPARQL queries,
+            prompts, RDF triples, and results are available throughout this website.</p><br><br>
+        <h3>TEAM</h3>
+        <ul>
+            <li>Saida Tynyshbek</li>
+            <li>Gaukhar Serikbay</li>
+            <li>Ekaterina Berezina</li>
+            <li>Dinara Khassenova</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
