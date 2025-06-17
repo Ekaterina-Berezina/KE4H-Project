@@ -1,0 +1,41 @@
+.wikidata-link {
+  pointer-events: none;
+  cursor: default;
+  background-color: #bcb2a8;
+}
+
+.content {
+
+  table {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+    border-spacing: 0;
+    border-radius: 20px;
+    background-color: #aea49c;
+
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #494444;
+      text-align: left;
+      font-size: 20px;
+    }
+
+    .top-left {
+      border-top-left-radius: 20px;
+    }
+
+    .top-right {
+      border-top-right-radius: 20px;
+    }
+
+    .bottom-left {
+      border-bottom-left-radius: 20px;
+    }
+
+    .bottom-right {
+      border-bottom-right-radius: 20px;
+    }
+  }
+}

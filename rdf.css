@@ -1,0 +1,5 @@
+.rdf-link {
+  pointer-events: none;
+  cursor: default;
+  background-color: #bcb2a8;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Prompts</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/llm.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="layout">
+    <div class="back">
+        <h1 class="title">Augmenting Cultural Heritage Data</h1>
+        <p class="subtitle">Combining SPARQL and LLMs to expand The Bolognese School (Guercino’s and Guido Reni’s
+            paintings Wikidata profiles)</p>
+    </div>
+    <div class="menu">
+        <a class="home-link" href="../index.html">HOME</a>
+        <a class="wikidata-link" href="wikidata.html">WIKIDATA</a>
+        <a class="sparql-link" href="sparql.html">SPARQL QUERIES</a>
+        <a class="llm-link" href="">LLM PROMPTS</a>
+        <a class="rdf-link" href="rdf.html">RDF TRIPLES</a>
+    </div>
+    <div class="content">
+        <h2>LLM PROMPTING</h2>
+        <h3>Phase 3: LLM Prompting Techniques to Suggest Relevant Additions</h3>
+        <p><b>Large Language Models (LLMs)</b> play a valuable role in enriching Wikidata by identifying missing yet
+            plausible metadata. In this case, by applying various prompting strategies with <b>ChatGPT</b> and
+            <b>Gemini</b>, we focused on <i>Madonna col Bambino in gloria con san Pancrazio e una santa monaca</i> by
+            Guercino (<a href="https://www.wikidata.org/wiki/Q134065073">Q134065073</a>), which lacked information
+            about the location (property P276) and <i>The Madonna and Sleeping Child</i> by Guido Reni
+            (<a href="https://www.wikidata.org/wiki/Q119922630">Q119922630</a>), which lacked information about the
+            material used (property P186).
+        </p>
+        <h4><b>3.1.</b> ZERO-SHOT PROMPTING</h4>
+        <p><b>Purpose</b>: Query the LLM for information without providing prior examples or context beyond the
+            question itself.</p>
+        <div class="tabulation">
+            <h4><b>3.1.1.</b> GUERCINO</h4>
+            <div class="tabulation">
+                <h4><b>3.1.1.1.</b> Gemini</h4>
+                <p>Use: Prompt 1 (General Search)<br>
+                    <span class="red">“Can you list all the paintings created by Guercino in 1615–1616?”</span></p>
+                <img src="../img/query31111.png" alt="">
+                <p>✅ <b>Strengths</b>: Retrieves a wide range of results; useful for getting an overview of works
+                    created within a specific time frame.<br>
+                    ❌ <b>Weaknesses</b>: May overlook the target painting if it’s absent or incorrectly labeled in
+                    Wikidata; not optimal for identifying specific metadata gaps.</p>
+                <h4><b>3.1.1.2.</b> Chat GPT</h4>
+                <p><b>Use</b>: We tried the same <b>Prompt 1</b>, but the painting was not listed as Guercino’s work
+                    for that time. To learn about the painting, we narrowed our query to
+                    <b>Prompt 2 (Targeted Search)</b>:<br>
+                    <span class="red">“Can you find a painting created by Guercino in 1615-1616 called Madonna col
+                        Bambino in gloria con san Pancrazio e una santa monaca?”</span></p>
+                <img src="../img/query31121.png" alt="">
+                <img class="one-margin" src="../img/query31122.png" alt="">
+                <p>✅ <b>Strengths</b>: Focused query; effectively checks whether a specific artwork is present in
+                    Wikidata.<br>
+                    ❌ <b>Weaknesses</b>: Depends on exact title matching; may return no results if the artwork is
+                    listed under a different or alternate name.</p><br>
+                <p>💡 <b>Results</b>:<br>
+                    — <b>Both LLMs contain the same information</b> about the painting’s current location: the Church
+                    of San Sebastiano in Renazzo (Cento fraction), Italy.<br>
+                    — <b>Prompt 2 is more appropriate</b> if your goal is to identify whether this specific painting is
+                    present in Wikidata or not. It allows for checking gaps like:</p>
+                <ul>
+                    <li>Missing artwork;</li>
+                    <li>Incomplete metadata (e.g., date, subjects, alternative titles);</li>
+                    <li>Mislinked entities (e.g., saints or Madonnas that are not properly referenced).</li>
+                </ul>
+                <p>— <b>Prompt 1 can be useful as a preliminary step</b> to get a broader view of Guercino's catalogue
+                    for the period, but will not necessarily reveal gaps in individual records.</p>
+            </div>
+
+            <h4><b>3.1.2.</b> GUIDO RENI</h4>
+            <div class="tabulation">
+                <h4><b>3.1.2.1.</b> Gemini</h4>
+                <p><b>Use</b>: We used the same Prompt for both LLMs:<br>
+                    <span class="red">“What material was likely used in Guido Reni’s painting Madonna and
+                        Sleeping Child?”</span></p>
+                <img src="../img/query31211.png" alt="">
+                <h4><b>3.1.2.2.</b> Chat GPT</h4>
+                <img src="../img/query31221.png" alt="">
+                <p>✅ <b>Strengths</b>: Extremely fast and effective for generating initial hypotheses.<br>
+                    ❌ <b>Weaknesses</b>: Based on general trends rather than direct references to Reni’s known works
+                    or stylistic analysis; the inference lacks source-specific evidence.</p><br>
+                <p>💡 Results:<br>
+                    — <b>Both ChatGPT and Gemini independently concluded</b> that The Madonna and Sleeping Child was
+                    most likely painted using oil on canvas.<br>
+                    — <b>Their reasoning drew on general knowledge</b> of Baroque-era artistic practices and the
+                    historical context of Guido Reni’s work in the early 17th century:</p>
+                <ul>
+                    <li>Oil on canvas became the dominant medium in the late 1500s and early 1600s.</li>
+                    <li>Canvas was commonly used for devotional and large-scale religious artworks.</li>
+                    <li>Stylistic conventions of the time strongly support this material assumption.</li>
+                </ul>
+
+            </div>
+        </div>
+        <h4><b>3.2.</b> FEW-SHOT PROMPTING</h4>
+        <p><b>Purpose</b>: Provide the model with one or two examples of similar cases so that it can logically
+            continue by analogy.</p>
+        <div class="tabulation">
+            <h4><b>3.2.1.</b> GUERCINO</h4>
+            <div class="tabulation">
+                <h4><b>3.2.1.1.</b> Gemini</h4>
+                <p><b>Use</b>: We made a few-shot <b>prompt suggested by Chat GPT</b> (with minor corrections) and
+                    applied it to Gemini. The results for missing data were as follows:</p>
+                <img src="../img/query32111.png" alt="">
+                <img class="one-margin" src="../img/query32112.png" alt="">
+                <h4><b>3.2.1.2.</b> Chat GPT</h4>
+                <p><b>Use</b>: Chat GPT also made suggestions for data augmentation on this painting. We decided to
+                    enrich the Knowledge Graph with location information.</p>
+                <img src="../img/query32113.png" alt="">
+                <img class="one-margin" src="../img/query32114.png" alt="">
+                <p>💡 <b>Results</b>:<br>
+                    — <b>Both models concluded</b> that the most likely location of <i>Madonna col Bambino in gloria con
+                        san Pancrazio e una santa monaca was</i> Chiesa di San Sebastiano in Renazzo, based on
+                    contextual
+                    cues and external verification.<br>
+                    — This approach provided a <b>more reasonable explanation</b> than the zero-shot.</p>
+            </div>
+            <h4><b>3.2.2.</b> GUIDO RENI</h4>
+            <div class="tabulation">
+                <h4><b>3.2.2.1.</b> Gemini</h4>
+                <p><b>Use</b>: To guide the models, we provided <b>1–2 examples</b> of confirmed artworks by the same
+                    painter. Based on these, the models extrapolated that <i>The Madonna and Sleeping Child</i> was
+                    also likely painted using oil on canvas.<br></p>
+                <img src="../img/query32211.png" alt="">
+                <h4><b>3.2.2.2.</b> Chat GPT</h4>
+                <img src="../img/query32221.png" alt="">
+                <img class="one-margin" src="../img/query32222.png" alt="">
+                <p>✅ <b>Strengths</b>: Delivers more robust reasoning through analogical comparison; more reliable
+                    than zero-shot.<br>
+                    ❌ <b>Weaknesses</b>: Depends on carefully selected examples and sufficient background
+                    knowledge.</p><br>
+                <p>💡 <b>Results</b>:<br>
+                    — <b>Reasoning highlights</b>:</p>
+                <ul>
+                    <li>Consistency in Reni’s technique across works from the same period;</li>
+                    <li>Frequent use of canvas for similarly sized, religious-themed paintings;</li>
+                    <li>No available evidence suggesting alternative supports (e.g., panel or copper).</li>
+                </ul>
+            </div>
+        </div>
+        <h4><b>3.3.</b> CHAIN-OF-THOUGHT PROMPTING</h4>
+        <p><b>Purpose</b>: Make the model reason step by step, taking into account the context, the style of the era
+            and analogies.</p>
+        <div class="tabulation">
+            <h4><b>3.3.1.</b> GUERCINO</h4>
+            <div class="tabulation">
+                <h4><b>3.3.1.1.</b> Gemini</h4>
+                <p><b>Use</b>: This prompt guided the models through a step-by-step reasoning process, considering,
+                    among other things, known exhibition practices — all to infer the current location of the
+                    artwork.</p>
+                <img src="../img/query33111.png" alt="">
+                <img class="one-margin" src="../img/query33112.png" alt="">
+                <h4><b>3.3.1.2.</b> Chat GPT</h4>
+                <img src="../img/query33113.png" alt="">
+                <p>💡 <b>Results</b>:<br>
+                    — By going through <b>each core property</b> that a complete Wikidata element should contain,
+                    this chain-of-thought prompt ensures:</p>
+                <ul>
+                    <li>Systematic identification of <b>gaps</b>;</li>
+                    <li>Recognition of <b>semantic consistency</b> issues (e.g., mismatch between image and subject);
+                    </li>
+                    <li>Best <b>data enrichment</b> suggestions (e.g., suggesting new aliases or missing fields).</li>
+                </ul>
+                <p>— Both LLMs identified <b>gaps in the metadata</b> on location. So the next step is to enrich the
+                    Knowledge Graph with information by creating new RDF triples.</p>
+            </div>
+            <h4><b>3.3.2.</b> GUIDO RENI</h4>
+            <div class="tabulation">
+                <h4><b>3.3.2.1.</b> Gemini</h4>
+                <p><b>Use</b>: This prompt instructed the models to engage in a structured, multi-step reasoning
+                    process, drawing on artistic context, comparable works, subject matter, and historical
+                    conventions.</p>
+                <img src="../img/query33211.png" alt="">
+                <h4><b>3.3.2.2.</b> Chat GPT</h4>
+                <img src="../img/query33212.png" alt="">
+                <img class="one-margin" src="../img/query33213.png" alt="">
+                <p>✅ <b>Strengths</b>: Enables deep, logical reasoning — ideal for scholarly validation and RDF
+                    enrichment.<br>
+                    ❌ <b>Weaknesses</b>: Requires more effort to design and assess; may produce overly detailed or
+                    cautious responses.</p><br>
+                <p>💡 Results:
+                    — <b>Reasoning highlights</b>:</p>
+                <ul>
+                    <li>Oil on canvas was the dominant medium for Baroque painting;</li>
+                    <li>Guido Reni consistently used this material in other religious works;</li>
+                    <li>No evidence was found to suggest the use of alternative materials.</li>
+                </ul>
+            </div>
+        </div>
+        <h3>OUTCOME</h3>
+        <p>For Guercino’s <i>Madonna col Bambino in gloria con san Pancrazio e una santa monaca</i>, LLMs helped
+            identify the painting’s correct location — <b>Chiesa di San Sebastiano in Renazzo</b> — which was
+            previously missing from Wikidata. In the case of Guido Reni’s <i>The Madonna and Sleeping Child</i>, we
+            inferred the likely medium to be oil on canvas based on historical context and Reni’s documented
+            techniques. All three prompting strategies — zero-shot, few-shot, and chain-of-thought — ultimately
+            produced the same conclusions. However, the <b>few-shot</b> and <b>chain-of-thought</b> approaches
+            offered stronger justifications and are thus preferable when the goal is <b>structured data enrichment</b>,
+            particularly in domains like <b>cultural heritage knowledge graphs</b> like Wikidata. This case highlights
+            how combining <b>LLM inference</b> with <b>SPARQL-based gap detection</b> can significantly improve
+            metadata quality — especially when supported by <b>human-in-the-loop validation</b>. The <b>design of the
+                prompt</b> plays a crucial role: well-structured input results in more reliable and semantically
+            rich output.</p><br>
+        <p>➡️ Once the LLMs produce their suggestions, we carefully evaluate the outputs for consistency, relevance,
+            and alignment with verified sources, and, based on this assessment, we proceed to translate the validated
+            information into structured <a href="rdf.html">RDF triples</a>, ready for integration into Wikidata.</p>
+    </div>
+</div>
+</body>
+</html>

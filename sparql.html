@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sparql Queries</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/sparql.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="layout">
+    <div class="back">
+        <h1 class="title">Augmenting Cultural Heritage Data</h1>
+        <p class="subtitle">Combining SPARQL and LLMs to expand The Bolognese School (Guercino’s and Guido Reni’s
+            paintings Wikidata profiles)</p>
+    </div>
+    <div class="menu">
+        <a class="home-link" href="../index.html">HOME</a>
+        <a class="wikidata-link" href="wikidata.html">WIKIDATA</a>
+        <a class="sparql-link" href="">SPARQL QUERIES</a>
+        <a class="llm-link" href="llm.html">LLM PROMPTS</a>
+        <a class="rdf-link" href="rdf.html">RDF TRIPLES</a>
+    </div>
+    <div class="content">
+        <h2>SPARQL QUERIES</h2>
+        <h3>Phase 2: Analysis of Existing Data and Identification of Missing Metadata</h3>
+        <div class="tabulation">
+            <p><b>2.1.</b> The page <b>GUERCINO</b> in Wikidata shows paintings by Guercino without a location.<br>
+                <b>Goal</b>: Find paintings’ missing locations (property P276).</p>
+            <img src="../img/query221.png" alt="">
+            <p>We decided to make a <b>more precise query</b> on the chosen painting.</p>
+            <img src="../img/query222.png" alt="">
+            <p>📎
+                <a href="https://w.wiki/EV7D&sa=D&source=editors&ust=1750113288226977&usg=AOvVaw22DMTtJCHphSFG5VegJhxF">
+                    Link to Wikidata Query Service Results for Query 1</a></p><br>
+            <img class="one-margin" src="../img/query223.png" alt="">
+            <p>We noticed that query results revealed multiple entries for “Madonna col Bambino in gloria con san
+                Pancrazio
+                e una santa monaca”, with inconsistent or clearly incorrect location data. This suggests that the actual
+                collection or museum is missing in Wikidata and should be verified through external sources.</p>
+            <img src="../img/query224.png" alt="">
+            <p>📎
+                <a href="https://w.wiki/EV87&sa=D&source=editors&ust=1750113288227689&usg=AOvVaw0atri66WHAX5_DjgiDAvAo">
+                    Link to Wikidata Query Service Results for Query 2</a></p><br>
+
+            <p>We were suggested to run an additional SPARQL query to confirm whether the painting <i>Madonna col
+                Bambino in
+                gloria con san Pancrazio e una santa monaca</i> exists in Wikidata and whether it has a <b>location
+                (P276)</b> or <b>collection (P195)</b> property.</p><br>
+            <p>Verify Missing Location Data</p>
+            <img src="../img/query235.png" alt="">
+            <img class="one-margin" src="../img/query236.png" alt="">
+            <p>📎
+                <a href="https://www.google.com/url?q=https://w.wiki/EV89&sa=D&source=editors&ust=1750123099908717&usg=AOvVaw3bGvTtxzWkPdlcezndn0AD">
+                    Link to Wikidata Query Service Results for Query 3</a></p><br>
+            <p>The query revealed that the painting does exist (Q134065073), but lacks any location or collection
+                metadata.</p><br><br>
+
+            <p><b>2.2.</b> The page <b>GUIDO RENI</b> in Wikidata shows paintings by Guido Reni without materials.<br>
+                <b>Goal</b>: Find paintings’ missing materials (property P186).</p>
+            <img src="../img/query231.jpg" alt="">
+            <img class="one-margin" src="../img/query232.jpg" alt="">
+            <p>📎
+                <a href="https://w.wiki/EV6$&sa=D&source=editors&ust=1750113288228210&usg=AOvVaw1JWXSjExDAtSzvNsGmuVch">
+                    Link to Wikidata Query Service Results for Query 4</a></p><br>
+            <p>We decided to make a <b>more precise query</b> on the chosen painting.</p>
+            <img src="../img/query233.jpg" alt="">
+            <p>📎 <a href="https://w.wiki/EV7A">Link to Wikidata Query Service Results for Query 5</a></p><br>
+            <p>We noticed that the query results for “The Madonna and Sleeping Child” returned an entry lacking material
+                information. This indicated that essential metadata — specifically the materials used — was missing in
+                Wikidata and needed to be verified using reliable external sources.</p><br><br>
+        </div>
+        <p>➡️ With the gaps confirmed, the next step was to apply <a href="llm.html">Large Language Models (LLMs)</a>
+        like ChatGPT and Gemini to generate and infer the missing knowledge.</p>
+    </div>
+</div>
+</body>
+</html>

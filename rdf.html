@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rdf Triples</title>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/rdf.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="layout">
+    <div class="back">
+        <h1 class="title">Augmenting Cultural Heritage Data</h1>
+        <p class="subtitle">Combining SPARQL and LLMs to expand The Bolognese School (Guercino’s and Guido Reni’s
+            paintings Wikidata profiles)</p>
+    </div>
+    <div class="menu">
+        <a class="home-link" href="../index.html">HOME</a>
+        <a class="wikidata-link" href="wikidata.html">WIKIDATA</a>
+        <a class="sparql-link" href="sparql.html">SPARQL QUERIES</a>
+        <a class="llm-link" href="llm.html">LLM PROMPTS</a>
+        <a class="rdf-link" href="">RDF TRIPLES</a>
+    </div>
+    <div class="content">
+        <h2>RDF TRIPLES</h2>
+        <h3>Phase 4: Structured Semantic Enrichment</h3>
+        <p>With the gap confirmed, we carried out <b>background research</b> using trusted external sources. We
+            identified the correct location of the painting <i>Madonna col Bambino in gloria con san Pancrazio e una
+                santa monaca</i> as <b>Church of San Sebastiano</b> in Renazzo in Italy — information found via the
+            <a href="https://it.m.wikipedia.org/wiki/Madonna_col_Bambino_in_gloria_con_san_Pancrazio_e_una_santa_monaca">
+                Italian Wikipedia</a>:</p>
+        <img src="../img/query41.png" alt="">
+        <p>We also found the correct material of the painting <i>The Madonna and Sleeping Child</i>: <b>oil on
+            canvas</b> — information found on the <a
+                href="https://artuk.org/discover/artworks/the-madonna-and-sleeping-child-162669">Art UK website</a>.</p>
+        <img src="../img/query42.png" alt="">
+        <p>Since the paintings already exist in Wikidata as Q134065073 and Q119922630, and we
+            want to enrich these pages with missing metadata, we can now write <b>RDF triples</b> using Wikidata
+            properties in <b>Turtle syntax</b>. Each triple links the artwork (<b>subject</b>) to its enriched property
+            (<b>predicate</b>) and corresponding value (<b>object</b>), following the Wikidata ontology.</p>
+        <h4><b>4.1.</b> GUERCINO</h4>
+        <div class="tabulation">
+            <p>Unfortunately, we encountered a challenge at this point: the painting <i>Madonna col Bambino in gloria
+                con
+                san Pancrazio e una santa monaca</i> (<a href="https://www.wikidata.org/wiki/Q134065073">Q134065073</a>)
+                is
+                located in the Church of San Sebastiano in Renazzo, which <i>had not yet been represented</i> in
+                Wikidata.
+                To address this, we proceed as follows:</p>
+            <h4><b>STEP 1:</b> Create a new Wikidata item for the church</h4>
+            <img src="../img/query411.png" alt="">
+            <a href="https://www.wikidata.org/wiki/Q134901747"><img class="one-margin" src="../img/query412.png" alt=""></a>
+            <h4><b>STEP 2:</b> Edit the painting to add the location (P276) pointing to this new church</h4>
+            <p>The goal now is to <b>enrich</b> the Wikidata item Q134065073 (<i>Madonna col Bambino in gloria con san
+                Pancrazio e una santa monaca</i>) by adding a new location statement (P276) that links it to the newly
+                created church entity.</p><br>
+            <p>We identified the following elements:</p>
+            <ul>
+                <li>Subject (painting): <span class="red">wd:Q134065073</span></li>
+                <li>Predicate: <span class="red">wdt:P276</span> (location)</li>
+                <li>Object: <span class="red">wd:qnewchurch</span> (newly created church item)</li>
+            </ul>
+            <p>To fill this metadata gap, we constructed <b>RDF triples</b> (with the help of <b>LLM</b>) using the
+                appropriate Wikidata properties and <b>QIDs</b> (entity identifiers).</p><br>
+            <p>Our initial prompt referenced the <b>Wikidata ontology</b> but did not use the correct QIDs. We refined
+                it
+                and generated an improved version using <b>Gemini</b> and <b>ChatGPT</b>.</p>
+            <img src="../img/query413.png" alt="">
+            <p>The following was suggested by LLMs:</p><br>
+            <p><u><b>Gemini</b></u></p>
+            <img src="../img/query414.png" alt="">
+            <p><u><b>Chat GPT</b></u></p>
+            <img src="../img/query415.png" alt="">
+            <h4><b>STEP 3:</b> Compare LLMs and correct RDF triples</h4>
+            <p>We asked two different LLMs to generate RDF triples in <b>Turtle syntax</b>, both aiming to express the
+                same
+                fact: that the painting <i>Madonna col Bambino in gloria con san Pancrazio e una santa monaca</i>
+                (Q134065073) is located in the Church of San Sebastiano in Renazzo (Q134901747). Each model produced a
+                valid structure, but with slight variations and some inaccuracies in identifiers or syntax.</p><br>
+            <p>After reviewing both outputs, we manually corrected and consolidated them into a single, accurate
+                version.</p>
+            <img src="../img/query416.png" alt="">
+            <p>To conclude, we represented the painting’s location using RDF triples in Turtle format, adhering to the
+                Wikidata ontology:</p>
+            <ul>
+                <li>Subject: wd:Q134065073 — the painting;</li>
+                <li>Predicate: wdt:P276 — location;</li>
+                <li>Object: wd:Q134901747 — the church.</li>
+            </ul>
+            <p>This triple <b>connects</b> the painting <i>Madonna col Bambino in gloria con san Pancrazio e una santa
+                monaca</i> (Q134065073) to its presumed physical location, the Church of San Sebastiano in Renazzo
+                (Q134901747), via the property P276 (location), improving the item’s completeness on Wikidata.</p>
+        </div>
+        <h4><b>4.2.</b> GUIDO RENI</h4>
+        <div class="tabulation">
+            <p>Since the oil painting already exists in Wikidata as
+                <a href="https://www.wikidata.org/wiki/Q174705">Q174705</a>, and we aim to enrich the painting <i>Madonna
+                    and Sleeping Child</i> (<a href="https://www.wikidata.org/wiki/Q119922630">Q119922630</a>) with this
+                missing metadata, we can now directly proceed with representing the new information using <b>RDF
+                    triples</b> with appropriate <b>Wikidata properties</b>.</p>
+            <h4><b>STEP 1:</b> Verify the data and prepare</h4>
+            <p>What we’ve done so far:</p>
+            <ul>
+                <li>Confirmed the painting exists on Wikidata: <span class="red">Q119922630</span>;</li>
+                <li>Identified the correct materials: <span class="red">oil paint</span>;</li>
+                <li>Created a Wikidata account.</li>
+            </ul>
+            <p>Next step is to manually (or with the help of <b>Quick Statements</b>) add or edit the location data
+                (create <b>RDF triples</b>).</p>
+            <h4><b>STEP 2:</b> Add the materials to the painting</h4>
+            <p>Our goal is to enrich the item Q119922630 (The Madonna and Sleeping Child) by adding a new
+                <b>material (P186) statement</b>.</p><br>
+            <p>Now we have to formulate this missing fact as an RDF triple in <b>Turtle syntax</b>, ready for ingestion
+                or
+                documentation.</p>
+            <p><b>We found:</b></p>
+            <ul>
+                <li>Subject (painting): <span class="red">wd:Q119922630</span></li>
+                <li>Predicate: <span class="red">wdt:P186</span> (materials)</li>
+                <li>Object: <span class="red">wd:oilpaint</span> (oil paint)</li>
+            </ul>
+            <p>We asked both LLMs to output RDF triples using Wikidata ontology</p><br>
+            <p><u><b>Gemini</b></u></p>
+            <img src="../img/query421.png" alt="">
+            <p><u><b>Chat GPT</b></u></p>
+            <img src="../img/query422.png" alt="">
+            <h4><b>STEP 3:</b> Compare LLMs and correct RDF triples</h4>
+            <p>We manually corrected the RDF using verified QIDs.</p>
+            <img src="../img/query423.png" alt="">
+            <img class="one-margin" src="../img/query424.jpg" alt="">
+        </div>
+        <p><b>In conclusion</b>, we represented the materials of the painting <i>The Madonna and Sleeping Child</i>
+            (Q119922630) using RDF triples in Turtle format. The data links the painting to its presumed materials,
+            the oil on canvas (Q296955), via the property P186 (materials).</p><br><br>
+        <h3>OUTCOME</h3>
+        <p>We successfully identified and verified <b>missing metadata</b> related to the painting (e.g., materials and
+            location). By using <b>RDF triples</b> in Turtle syntax, we translated this factual information into a
+            machine-readable format based on <b>Wikidata ontology</b>. Verified QIDs were used to ensure semantic
+            accuracy, and the process demonstrated how structured data can be enriched through a combination of
+            <b>human validation and AI assistance</b>. This approach strengthens the reliability and reusability of
+            cultural heritage data within the semantic web ecosystem.</p>
+        <p><u>Visual Representation of RDF triples</u></p>
+        <img src="../img/query425.jpg" alt="">
+    </div>
+</div>
+</body>
+</html>

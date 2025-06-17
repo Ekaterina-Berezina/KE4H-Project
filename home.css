@@ -1,0 +1,29 @@
+.home-link {
+  pointer-events: none;
+  cursor: default;
+  background-color: #bcb2a8;
+}
+
+.content {
+
+  .image-grid {
+    display: flex;
+    gap: 30px;
+
+    .left {
+      width: 38%;
+    }
+
+    .right {
+      width: 62%;
+
+      p {
+        margin-bottom: 5px;
+      }
+    }
+
+    img {
+      margin: unset;
+    }
+  }
+}
